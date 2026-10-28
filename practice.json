@@ -1,0 +1,59 @@
+{
+  "updatedAt": "Initial set",
+  "focus": "This week's focus: joins, aggregation, and window functions. Try the prompts, then compare with the sample solutions.",
+  "challenges": [
+    {
+      "topic": "JOIN + aggregation",
+      "title": "Revenue by product",
+      "level": "Intermediate",
+      "prompt": "Using order_items, calculate total sales value for each product. Return product_id and revenue, highest revenue first.",
+      "starter": "SELECT product_id, SUM(quantity * unit_price) AS revenue\nFROM order_items\nGROUP BY product_id\nORDER BY revenue DESC;",
+      "solution": "SELECT product_id, SUM(quantity * unit_price) AS revenue FROM order_items GROUP BY product_id ORDER BY revenue DESC;",
+      "hint": "Line value = quantity multiplied by unit_price; group by product_id."
+    },
+    {
+      "topic": "LEFT JOIN",
+      "title": "Customers with no orders",
+      "level": "Intermediate",
+      "prompt": "List every customer who has never placed an order. Return customer_id and customer_name.",
+      "starter": "SELECT c.customer_id, c.customer_name\nFROM customers c\nLEFT JOIN orders o ON o.customer_id = c.customer_id\nWHERE o.order_id IS NULL;",
+      "solution": "SELECT c.customer_id, c.customer_name FROM customers c LEFT JOIN orders o ON o.customer_id = c.customer_id WHERE o.order_id IS NULL;",
+      "hint": "A LEFT JOIN keeps every customer; unmatched order columns become NULL."
+    },
+    {
+      "topic": "Window functions",
+      "title": "Rank employees by salary",
+      "level": "Advanced",
+      "prompt": "Rank employees from highest to lowest salary within each department. Return employee name, department_id, salary and rank.",
+      "starter": "SELECT name, department_id, salary,\n       DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank\nFROM employees\nORDER BY department_id, salary_rank;",
+      "solution": "SELECT name, department_id, salary, DENSE_RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS salary_rank FROM employees ORDER BY department_id, salary_rank;",
+      "hint": "Use DENSE_RANK() OVER with PARTITION BY department_id."
+    }
+  ],
+  "resources": [
+    {
+      "topic": "SQL basics",
+      "title": "SQLBolt interactive lessons",
+      "description": "Short interactive SQL lessons and exercises for querying tables.",
+      "url": "https://sqlbolt.com/"
+    },
+    {
+      "topic": "Practice",
+      "title": "SQLite SQL language reference",
+      "description": "Official SQLite documentation for SELECT, joins, expressions and functions.",
+      "url": "https://www.sqlite.org/lang.html"
+    },
+    {
+      "topic": "Query practice",
+      "title": "SQLZoo",
+      "description": "Interactive SQL tutorials and practice questions.",
+      "url": "https://sqlzoo.net/wiki/SQL_Tutorial"
+    },
+    {
+      "topic": "Intermediate",
+      "title": "Mode SQL tutorial",
+      "description": "SQL learning material covering filtering, joins, aggregation and analytics.",
+      "url": "https://mode.com/sql-tutorial/"
+    }
+  ]
+}

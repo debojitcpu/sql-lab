@@ -35,3 +35,11 @@ If opening directly from a file causes browser restrictions, use VS Code with th
 - The SQL engine loads from a CDN, so an internet connection is needed to start the app.
 - This is a learning prototype, not a secure production database. Do not enter confidential data.
 - Includes a web app manifest and service worker for installability and shell caching. The SQLite engine still needs an internet connection on first load because it is loaded from a CDN.
+
+
+## Weekly Practice (no AI API)
+- The Weekly Practice tab shows curated SQL prompts and links to public SQL learning resources.
+- `.github/workflows/weekly-practice.yml` refreshes the feed every Monday at 08:30 India time and can also be run manually.
+- `scripts/update_practice.py` updates the feed date and checks resource links where possible. It does not scrape or republish third-party lessons; curated prompts and links remain in `practice.json`.
+- To enable automatic deployment, set GitHub repository **Settings → Pages → Build and deployment → Source → GitHub Actions**. In **Settings → Actions → General → Workflow permissions**, allow read and write permissions so the workflow can commit the refreshed feed.
+- No AI API key or paid AI service is used.
